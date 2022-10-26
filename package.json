@@ -4,6 +4,7 @@
   "description": "API for a social network",
   "main": "index.js",
   "scripts": {
+    "start": "node index",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
