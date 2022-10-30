@@ -32,8 +32,21 @@ module.exports = {
       .then((user) => res.json(user))
       .catch((err) => res.status(500).json(err));
   },
+  updateUser(req, res) {
+    User.findOneandUpdate(
+      { _id: req.params.userId },
+      { $set: req.body },
+      { runValidators: true, new: true }
+    )
+      .then((user) =>
+        !user
+          ? res.status(404).json({ message: 'No user with that ID' })
+          : res.json({ message: 'User successfully updated' })
+      )
+      .catch((err) => res.status(500).json(err));
+  },
   deleteUser(req, res) {
-    User.findOneandRemove({ _id: req.params.userId })
+    User.findOneAndDelete({ _id: req.params.userId })
       .then((user) =>
         !user
           ? res.status(404).json({ message: 'No user with that ID' })
@@ -54,12 +67,12 @@ module.exports = {
       { $push: { friends: req.params.friendID } },
       { new: true }
     )
-      .then((dbUserData) => {
-        if (!dbUserData) {
+      .then((user) => {
+        if (!user) {
           res.status(404).json({ message: 'No user found at this id!' });
           return;
         }
-        res.json(dbUserData);
+        res.json(user);
       })
       .catch((err) => {
         console.log(err);
@@ -72,17 +85,26 @@ module.exports = {
       { $pull: { friends: params.friendId } },
       { new: true }
     )
-      .then((dbUserData) => {
-        if (!dbUserData) {
+      .then((user) => {
+        if (!user) {
           res.status(404).json({ message: 'No user found at this id!' });
           return;
         }
 
-        res.json(dbUserData);
+        res.json(user);
       })
       .catch((err) => {
         console.log(err);
         res.status(400).json(err);
       });
+  },
+  deleteThought(req, res) {
+    Thought.findOneAndDelete({ _id: req.params.thoughtId })
+      .then((thought) =>
+        !thought
+          ? res.json(404).json({ message: 'Thought not found' })
+          : res.json({ message: 'Thought successfully deleted' })
+      )
+      .catch((err) => res.status(500).json(err));
   },
 };
