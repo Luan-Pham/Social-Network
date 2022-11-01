@@ -14,9 +14,10 @@ Learning to set up routes for a social network backend. Utilized express, mongoD
 
   ## Install
 
-  Install the dependencies of the project with "npm i" in the terminal. After installing, remain in the terminal and enter "npm start" to start the server. Use insomnia to browse the different routes and make different API calls. View the accompanying video for further instructions.
+  Install the dependencies of the project with "npm i" in the terminal. After installing, remain in the terminal and enter "npm start" to start the server. Use insomnia to browse the different routes and make different API calls. View the accompanying video for further instructions. 
 
   ## Usage
+ Link to demonstration video: https://www.youtube.com/watch?v=w2HihRUpT4Q&ab_channel=LuanPham
 
   ## Credit
 
