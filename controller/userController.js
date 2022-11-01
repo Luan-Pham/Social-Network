@@ -62,9 +62,9 @@ module.exports = {
       });
   },
   addFriend(req, res) {
-    User.findOneandUpdate(
-      { _id: req.params.userID },
-      { $push: { friends: req.params.friendID } },
+    User.findOneAndUpdate(
+      { _id: req.params.userId },
+      { $push: { friends: req.params.friendId } },
       { new: true }
     )
       .then((user) => {
